@@ -13,7 +13,7 @@ if err != nil {
     // handle err
 }
 // or, to encode:
-enc := base58.bitcoin.Encode(dec)
+enc := base58.Bitcoin.Encode(dec)
 ```
 
 
