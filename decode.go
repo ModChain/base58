@@ -1,13 +1,12 @@
 package base58
 
 import (
-	"errors"
 	"fmt"
 )
 
 func (e *Encoding) Decode(str string) ([]byte, error) {
 	if len(str) == 0 {
-		return nil, errors.New("zero length string")
+		return nil, ErrZeroLength
 	}
 
 	zero := e.encode[0]
@@ -26,10 +25,10 @@ func (e *Encoding) Decode(str string) ([]byte, error) {
 
 	for _, r := range str {
 		if r > 127 {
-			return nil, errors.New("invalid non-ascii input")
+			return nil, ErrNonAscii
 		}
 		if e.decode[r] == -1 {
-			return nil, fmt.Errorf("invalid base58 digit (%q)", r)
+			return nil, fmt.Errorf("%w (%q)", ErrBadDigit, r)
 		}
 
 		c = uint64(e.decode[r])
