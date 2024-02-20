@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+// Decode will decode the provided string using the current encoding and return
+// a byte array of the value, or an error if the input was not valid
 func (e *Encoding) Decode(str string) ([]byte, error) {
 	if len(str) == 0 {
 		return nil, ErrZeroLength

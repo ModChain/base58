@@ -1,7 +1,13 @@
 package base58
 
+// Encode will encode the provided byte array into a base58 encoded string using
+// the current encoding.
 func (e *Encoding) Encode(bin []byte) string {
 	size := len(bin)
+
+	if size == 0 {
+		return ""
+	}
 
 	zcount := 0
 	for zcount < size && bin[zcount] == 0 {
