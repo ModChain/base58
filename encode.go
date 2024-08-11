@@ -108,9 +108,8 @@ func (e *Encoding) EncodeTo(dst, src []byte) []byte {
 
 	// Now encode the values with actual digits in-place
 	dst = dst[i-zcount:]
-	size -= i - zcount
 	ent := e.encode // encode table
-	for i = 0; i < size; i++ {
+	for i = range dst {
 		dst[i] = ent[dst[i]]
 	}
 
