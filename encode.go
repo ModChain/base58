@@ -113,5 +113,5 @@ func (e *Encoding) EncodeTo(dst, src []byte) []byte {
 		dst[i] = ent[dst[i]]
 	}
 
-	return dst[:size]
+	return dst
 }
