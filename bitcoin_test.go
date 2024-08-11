@@ -35,5 +35,9 @@ func TestBase58Vectors(t *testing.T) {
 		if final != in {
 			t.Errorf("Bad encode %s, got %s instead", in, final)
 		}
+		final2 := base58.Bitcoin.EncodeTo(nil, res)
+		if string(final2) != in {
+			t.Errorf("Bad encodeTo %s, got %s instead", in, final2)
+		}
 	}
 }
