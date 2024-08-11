@@ -17,6 +17,8 @@ func TestBase58Vectors(t *testing.T) {
 		"14h2bDLZSuvRFhUL45VjPHJcW667mmRAAn:00287a57cdbe7b5cf80f76309b29756d258660072b30da677b",
 	}
 
+	buf := make([]byte, 64)
+
 	for _, v := range vecs {
 		vA := strings.SplitN(v, ":", 2)
 		in := vA[0]
@@ -35,7 +37,7 @@ func TestBase58Vectors(t *testing.T) {
 		if final != in {
 			t.Errorf("Bad encode %s, got %s instead", in, final)
 		}
-		final2 := base58.Bitcoin.EncodeTo(nil, res)
+		final2 := base58.Bitcoin.EncodeTo(buf[:0], res)
 		if string(final2) != in {
 			t.Errorf("Bad encodeTo %s, got %s instead", in, final2)
 		}

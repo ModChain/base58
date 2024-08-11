@@ -84,6 +84,10 @@ func (e *Encoding) EncodeTo(dst, src []byte) []byte {
 
 	if cap(dst) >= size {
 		dst = dst[:size]
+		// memset to zero
+		for i := range dst {
+			dst[i] = 0
+		}
 	} else {
 		dst = make([]byte, size)
 	}
