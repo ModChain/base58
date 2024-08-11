@@ -95,7 +95,7 @@ func (e *Encoding) EncodeTo(dst, src []byte) []byte {
 	for _, b := range src {
 		i = size - 1
 		for carry = uint32(b); i > high || carry != 0; i-- {
-			carry = carry + 256*uint32(dst[i])
+			carry += uint32(dst[i]) << 8
 			dst[i] = byte(carry % 58)
 			carry /= 58
 		}
